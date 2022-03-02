@@ -36,14 +36,17 @@ public class AudioController {
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-
     }
 
     @PostMapping("/submit")
     public ResponseEntity<AudioUpload> uploadAudio(@RequestBody AudioUpload input) {
+        
         try {
-            AudioUpload upload = repo.save(new AudioUpload(input.getName(), input.getDescription(), input.getImage(), input.getSource(), input.getAudio()));
+            AudioUpload upload = new AudioUpload(input.getName(), input.getDescription(), input.getImage(), input.getSource(), input.getAudio());
+            if (upload.getName() == null || upload.getDescription() == null || upload.getImage() == null || upload.getSource() == null || upload.getAudio() == null) {
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            }
+            repo.save(upload);
             return new ResponseEntity<>(upload, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 @Document(collection = "audio")
 @CompoundIndexes({
-    @CompoundIndex(name = "audio_index", def = "{ 'name' : 1, 'description' : 1", unique = true)
+    @CompoundIndex(name = "audio_index", def = "{ 'name' : 1, 'description' : 1}", unique = true)
 })
 public class AudioUpload {
 
@@ -52,12 +52,23 @@ public class AudioUpload {
         return image;
     } 
 
+    /*
     public ArrayList<Integer> getVotes(){
         ArrayList<Integer> votes = new ArrayList<Integer>(); 
         votes.add(upvotes); 
         votes.add(downvotes);
         return votes;
     }
+    */ 
+
+    public int getUpvotes(){
+        return this.upvotes;
+    }
+
+    public int getDownvotes(){
+        return this.downvotes;
+    }
+
 
     public String getSource() {
         return source;
