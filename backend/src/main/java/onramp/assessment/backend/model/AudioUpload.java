@@ -1,11 +1,11 @@
 package onramp.assessment.backend.model;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
 import java.util.ArrayList;
 
-@Document(collection = "tracks")
+@Document(collection = "audio")
 public class AudioUpload {
 
     @Id
@@ -17,6 +17,8 @@ public class AudioUpload {
     private int downvotes; 
     private String source; 
     private String audio; 
+
+    public AudioUpload(){}
 
     public AudioUpload(String name, String description, String image, String source, String audio ) {
         this.name = name; 
@@ -59,3 +61,4 @@ public class AudioUpload {
         return audio;
     }
 }
+
