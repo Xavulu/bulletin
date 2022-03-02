@@ -1,15 +1,21 @@
 package onramp.assessment.backend.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 
 @Document(collection = "audio")
+@CompoundIndexes({
+    @CompoundIndex(name = "audio_index", def = "{ 'name' : 1, 'description' : 1", unique = true)
+})
 public class AudioUpload {
 
     @Id
     private String id; 
+    
     private String name; 
     private String description; 
     private String image; 
