@@ -5,7 +5,11 @@ import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+
 
 @Document(collection = "audio")
 @CompoundIndexes({
@@ -16,12 +20,32 @@ public class AudioUpload {
     @Id
     private String id; 
     
+    @Valid
+    @NotNull
+    @NotBlank(message = "please enter a name")
     private String name; 
+
+    @Valid
+    @NotNull(message = "please give a description")
+    @NotBlank
     private String description; 
+
+    @Valid
+    @NotNull(message = "please give an image url")
+    @NotBlank
     private String image; 
+
     private int upvotes; 
     private int downvotes; 
+
+    @Valid
+    @NotNull(message = "please give a source url")
+    @NotBlank
     private String source; 
+
+    @Valid
+    @NotNull(message = "please give an audio url")
+    @NotBlank
     private String audio; 
 
     public AudioUpload(){}
@@ -51,15 +75,6 @@ public class AudioUpload {
     public String getImage() {
         return image;
     } 
-
-    /*
-    public ArrayList<Integer> getVotes(){
-        ArrayList<Integer> votes = new ArrayList<Integer>(); 
-        votes.add(upvotes); 
-        votes.add(downvotes);
-        return votes;
-    }
-    */ 
 
     public int getUpvotes(){
         return this.upvotes;

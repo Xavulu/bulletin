@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api")
@@ -39,13 +40,13 @@ public class AudioController {
     }
 
     @PostMapping("/submit")
-    public ResponseEntity<AudioUpload> uploadAudio(@RequestBody AudioUpload input) {
+    public ResponseEntity<AudioUpload> uploadAudio(@Valid @RequestBody AudioUpload input) {
         
         try {
             AudioUpload upload = new AudioUpload(input.getName(), input.getDescription(), input.getImage(), input.getSource(), input.getAudio());
-            if (upload.getName() == null || upload.getDescription() == null || upload.getImage() == null || upload.getSource() == null || upload.getAudio() == null) {
+            /*if (upload.getName() == null || upload.getDescription() == null || upload.getImage() == null || upload.getSource() == null || upload.getAudio() == null) {
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-            }
+            }*/
             repo.save(upload);
             return new ResponseEntity<>(upload, HttpStatus.OK);
         } catch (Exception e) {
