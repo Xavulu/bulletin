@@ -3,12 +3,15 @@ package onramp.assessment.backend.controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import onramp.assessment.backend.repository.AudioRepository;
 import onramp.assessment.backend.utils.URLValidate;
 import onramp.assessment.backend.model.AudioUpload;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +44,16 @@ public class AudioController {
         }
     }
 
+    @GetMapping("/single/{id}")
+    public ResponseEntity<AudioUpload> findOne(@PathVariable("id") String id){
+        Optional<AudioUpload> single = repo.findById(id);
+        if (single.isPresent() == false){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        AudioUpload res = single.get(); 
+        return new ResponseEntity<>(res, HttpStatus.OK);
+    }
+
     @PostMapping("/submit")
     public ResponseEntity<AudioUpload> uploadAudio(@Valid @RequestBody AudioUpload input) {
         try {
@@ -64,12 +77,34 @@ public class AudioController {
 
     @PatchMapping("/upvote/{id}") 
     public ResponseEntity<HttpStatus> upVote(@PathVariable("id") String id){
-        return new ResponseEntity<>(HttpStatus.OK);
+        Optional<AudioUpload> single = repo.findById(id);
+        if (single.isPresent() == false){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        AudioUpload res = single.get(); 
+        res.upVote();
+        try {
+            repo.save(res);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     @PatchMapping("/downvote/{id}") 
     public ResponseEntity<HttpStatus> downVote(@PathVariable("id") String id){
-        return new ResponseEntity<>(HttpStatus.OK);
+        Optional<AudioUpload> single = repo.findById(id);
+        if (single.isPresent() == false){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        AudioUpload res = single.get(); 
+        res.downVote();
+        try {
+            repo.save(res);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
 }
