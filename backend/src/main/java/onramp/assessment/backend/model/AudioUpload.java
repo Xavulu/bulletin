@@ -15,7 +15,7 @@ import javax.validation.constraints.NotBlank;
 @CompoundIndexes({
     @CompoundIndex(name = "audio_index", def = "{ 'name' : 1, 'description' : 1}", unique = true)
 })
-public class AudioUpload {
+public class AudioUpload{
 
     @Id
     private String id; 
@@ -91,6 +91,21 @@ public class AudioUpload {
 
     public String getAudio() {
         return audio;
+    }
+
+    public boolean isValidUpload(){
+        if (this.getName() == null || this.getDescription() == null || this.getImage() == null || this.getSource() == null || this.getAudio() == null) {
+            return false;
+        }
+        return true;
+    }
+
+    public void upVote(){
+        upvotes += 1;
+    }
+
+    public void downVote(){
+        downvotes += 1;
     }
 }
 

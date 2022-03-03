@@ -1,9 +1,11 @@
 package onramp.assessment.backend.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import onramp.assessment.backend.repository.AudioRepository;
+import onramp.assessment.backend.utils.URLValidate;
 import onramp.assessment.backend.model.AudioUpload;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +43,16 @@ public class AudioController {
 
     @PostMapping("/submit")
     public ResponseEntity<AudioUpload> uploadAudio(@Valid @RequestBody AudioUpload input) {
-        
         try {
             AudioUpload upload = new AudioUpload(input.getName(), input.getDescription(), input.getImage(), input.getSource(), input.getAudio());
-            if (upload.getName() == null || upload.getDescription() == null || upload.getImage() == null || upload.getSource() == null || upload.getAudio() == null) {
+            if (upload.isValidUpload() == false){
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            }
+            List<String> urls = Arrays.asList(input.getSource(), input.getAudio()); 
+            if (URLValidate.urlValidator(urls) == false){
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            }
+            if (URLValidate.hasMp3(input.getAudio()) == false){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             repo.save(upload);
