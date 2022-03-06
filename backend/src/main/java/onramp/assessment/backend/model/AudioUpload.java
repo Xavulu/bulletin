@@ -28,7 +28,12 @@ public class AudioUpload{
     @Valid
     @NotNull(message = "please give a description")
     @NotBlank
-    private String description; 
+    private String description;  
+
+    @Valid
+    @NotNull(message = "please give a title")
+    @NotBlank
+    private String title; 
 
     @Valid
     @NotNull(message = "please give an image url")
@@ -50,9 +55,10 @@ public class AudioUpload{
 
     public AudioUpload(){}
 
-    public AudioUpload(String name, String description, String image, String source, String audio ) {
+    public AudioUpload(String name, String description, String image, String source, String audio, String title ) {
         this.name = name; 
         this.description = description; 
+        this.title = title;
         this.image = image; 
         this.upvotes = 0; 
         this.downvotes = 0;
@@ -70,6 +76,10 @@ public class AudioUpload{
 
     public String getDescription() {
         return description;
+    } 
+
+    public String getTitle() {
+        return title;
     }
 
     public String getImage() {

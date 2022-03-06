@@ -57,7 +57,7 @@ public class AudioController {
     @PostMapping("/submit")
     public ResponseEntity<AudioUpload> uploadAudio(@Valid @RequestBody AudioUpload input) {
         try {
-            AudioUpload upload = new AudioUpload(input.getName(), input.getDescription(), input.getImage(), input.getSource(), input.getAudio());
+            AudioUpload upload = new AudioUpload(input.getName(), input.getDescription(), input.getImage(), input.getSource(), input.getAudio(), input.getTitle());
             if (upload.isValidUpload() == false){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
