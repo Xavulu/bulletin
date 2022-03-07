@@ -1,6 +1,7 @@
 package onramp.assessment.backend.model;
 
-import java.util.List;
+import java.util.HashMap;
+
 
 import onramp.assessment.backend.translate.GoogleTransLateAPIIntegration;
 
@@ -58,7 +59,7 @@ public class AudioUpload{
     private String audio; 
 
 
-    private String translation;
+    private HashMap<String, String> translation;
 
     public AudioUpload(){}
 
@@ -77,10 +78,13 @@ public class AudioUpload{
         this.downvotes = 0;
         this.source = source; 
         this.audio = audio;
+        this.translation = new HashMap<String, String>();
         try {
-            this.translation = GoogleTransLateAPIIntegration.translateDescription(description, "es");
+            this.translation.put("Mandarin",  GoogleTransLateAPIIntegration.translateDescription(description, "zh-CN"));
+            this.translation.put("Spanish",  GoogleTransLateAPIIntegration.translateDescription(description, "es"));
+            this.translation.put("French",  GoogleTransLateAPIIntegration.translateDescription(description, "fr")); 
+            this.translation.put("Arabic",  GoogleTransLateAPIIntegration.translateDescription(description, "ar"));
         } catch (Exception e) {
-            this.translation = "";
             System.out.println("translation failed :(\n");
             System.out.println(e.getMessage());
         }
@@ -123,7 +127,7 @@ public class AudioUpload{
         return audio;
     }
 
-    public String getTranslation(){
+    public HashMap<String, String> getTranslation(){
         return translation;
     }
 

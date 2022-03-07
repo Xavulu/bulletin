@@ -21,7 +21,7 @@ public class GoogleTransLateAPIIntegration {
             TranslateTextRequest req = TranslateTextRequest.newBuilder()
                 .setParent(parent.toString())
                 .setMimeType("text/plain")
-                .setTargetLanguageCode("es")
+                .setTargetLanguageCode(target)
                 .addContents(text)
                 .build(); 
 
