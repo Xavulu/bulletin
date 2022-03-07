@@ -40,7 +40,7 @@ public class Seed implements CommandLineRunner{
 
             AudioUpload pod2 = new AudioUpload("The Dirt Show", 
             "The Dirt Show is a podcast hosted by the team behind the UX design agency, Fresh Tilled Soil. One cool thing about this podcast is some topics follow a mini-series format, with multiple episodes and different guests talking about the same topic. For example, they have a mini-series on topics such as \"designing your career\" and \"designing the future\".",
-            "", 
+            "https://avatars.dicebear.com/api/initials/The_Dirt_Show.svg", 
             "http://www.freshtilledsoil.com/category/podcast/",
             "http://traffic.libsyn.com/thedirt/James_Aylward_-_Final.mp3",
             "Data-Driven Design with James Aylward of Pluralsight"
@@ -77,7 +77,7 @@ public class Seed implements CommandLineRunner{
 
             AudioUpload pod6 = new AudioUpload("UX Discovery Session",
             "A discovery session is an opportunity to learn about a relevant topic, generate ideas that expand a new technique or practice, or brainstorm concepts and ideas for the next new thing.",
-            "",
+            "https://avatars.dicebear.com/api/initials/UX_Discovery_Session.svg",
             "http://uxdiscoverysession.com/",
             "http://traffic.libsyn.com/discoverysession/UXDS071_Di_Dang_New_Technologies_Design_Advocate_at_Google.mp3",
             "Di Dang, New Technologies Design Advocate at Google"

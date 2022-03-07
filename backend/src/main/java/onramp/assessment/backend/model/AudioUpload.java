@@ -1,12 +1,16 @@
 package onramp.assessment.backend.model;
 
+import java.util.List;
+
+import onramp.assessment.backend.translate.GoogleTransLateAPIIntegration;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
 import javax.validation.constraints.NotNull;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
@@ -53,17 +57,33 @@ public class AudioUpload{
     @NotBlank
     private String audio; 
 
+
+    private String translation;
+
     public AudioUpload(){}
 
     public AudioUpload(String name, String description, String image, String source, String audio, String title ) {
         this.name = name; 
-        this.description = description; 
+        this.description = description;
         this.title = title;
-        this.image = image; 
+        if (image == ""){
+            String urlsafe = name.replace(" ", "_");
+            String placeholder = "https://avatars.dicebear.com/api/initials/" + urlsafe + ".svg";
+            this.image = placeholder;
+        } else {
+            this.image = image;
+        }
         this.upvotes = 0; 
         this.downvotes = 0;
         this.source = source; 
         this.audio = audio;
+        try {
+            this.translation = GoogleTransLateAPIIntegration.translateDescription(description, "es");
+        } catch (Exception e) {
+            this.translation = "";
+            System.out.println("translation failed :(\n");
+            System.out.println(e.getMessage());
+        }
     } 
 
     public String getId() {
@@ -101,6 +121,10 @@ public class AudioUpload{
 
     public String getAudio() {
         return audio;
+    }
+
+    public String getTranslation(){
+        return translation;
     }
 
     public boolean isValidUpload(){
