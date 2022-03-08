@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'; 
 
-const singlePostView = () => {
+const SinglePostView = () => {
     const router = useRouter();
     const { id } = router.query;
 
