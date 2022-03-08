@@ -12,13 +12,13 @@ export const audioList$ = rawData$.pipe(
     )
 );
 
-fetch("https://onramp-bulletin.herokuapp.com/api/listall", {
+fetch("/api/cors?url=https://onramp-bulletin.herokuapp.com/api/listall", {
     method: 'GET',
     }).then(response => response.json())
     .then((data: AudioResponse[]) => rawData$.next(data));
 
 export const refreshAfterVote = async () => {
-    await fetch("https://onramp-bulletin.herokuapp.com/api/listall", {
+    await fetch("/api/cors?url=https://onramp-bulletin.herokuapp.com/api/listall", {
     method: 'GET',
     }).then(response => response.json())
     .then((data: AudioResponse[]) => rawData$.next(data));

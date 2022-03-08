@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.validation.Valid;
 
@@ -28,6 +29,8 @@ public class AudioController {
     @Autowired
     private AudioRepository repo; 
     // https://onramp-bulletin.herokuapp.com/api
+
+    @CrossOrigin
     @GetMapping("/listall")
     public ResponseEntity<List<AudioUpload>> listAll(){
         try { 
@@ -42,6 +45,7 @@ public class AudioController {
         }
     }
 
+    @CrossOrigin
     @GetMapping("/single/{id}")
     public ResponseEntity<AudioUpload> findOne(@PathVariable("id") String id){
         Optional<AudioUpload> single = repo.findById(id);
@@ -52,6 +56,7 @@ public class AudioController {
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @PostMapping("/submit")
     public ResponseEntity<AudioUpload> uploadAudio(@Valid @RequestBody AudioUpload input) {
         try {
@@ -70,6 +75,7 @@ public class AudioController {
         }
     }
 
+    @CrossOrigin
     @PatchMapping("/upvote/{id}") 
     public ResponseEntity<HttpStatus> upVote(@PathVariable("id") String id){
         Optional<AudioUpload> single = repo.findById(id);
@@ -86,6 +92,7 @@ public class AudioController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @PatchMapping("/downvote/{id}") 
     public ResponseEntity<HttpStatus> downVote(@PathVariable("id") String id){
         Optional<AudioUpload> single = repo.findById(id);
