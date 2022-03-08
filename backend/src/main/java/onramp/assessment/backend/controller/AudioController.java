@@ -59,11 +59,8 @@ public class AudioController {
             if (upload.isValidUpload() == false){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
-            List<String> urls = Arrays.asList(input.getSource(), input.getAudio()); 
+            List<String> urls = Arrays.asList(input.getSource(), input.getAudio(), input.getAudio()); 
             if (URLValidate.urlValidator(urls) == false){
-                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-            }
-            if (URLValidate.hasMp3(input.getAudio()) == false){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             repo.save(upload);

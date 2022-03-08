@@ -11,7 +11,7 @@ type AudioResponse = {
     audio: string; 
     translation: string[]; 
     validUpload: boolean;
-    short?: string; 
+    link? : string;
 }
 
 export default AudioResponse;

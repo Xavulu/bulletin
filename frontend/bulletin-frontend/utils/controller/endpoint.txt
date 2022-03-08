@@ -27,3 +27,17 @@ https://onramp-bulletin.herokuapp.com/api/upvote/{id}
 
 https://onramp-bulletin.herokuapp.com/api/downvote/{id}
 
+sample data:
+
+    name: 
+        Twig! pugmag podcast
+    description: 
+        Welcome back gamers. This month has been so fucked up but we have run an audio marathon to get you this Twig! tape. In this episode we talk about Ellen Jopping, the science of walking around in Death Stranding,  what the hell was going on in The Lighthouse and Parasite… also we talk Trick Mirror please buy that book it slaps so hard Jia Tolentino did that!!!!!!! Listen to four of our co-hosts try their best to stay on topic while their two-second attention spans try to pin them down.
+    image: 
+        https://images.squarespace-cdn.com/content/v1/5ae5edddf407b4362a8852cb/1574702748974-T8L2DM8LPOAL2AN69RLE/pen+island.png?format=2500w
+    source: 
+    https://pugmag.com/twig/28
+    audio:
+        https://static1.squarespace.com/static/5ae5edddf407b4362a8852cb/t/5ddc0947b9b6bf644899d908/1574701471544/Twig+Episode+28.mp3/original/Twig+Episode+28.mp3
+    title: 
+        Episode 28: The Pen Island Diaspora
