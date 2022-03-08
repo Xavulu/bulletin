@@ -11,4 +11,4 @@ const SinglePostView = () => {
     );
 }
 
-export default singlePostView;
+export default SinglePostView;
