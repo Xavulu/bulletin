@@ -2,10 +2,10 @@ import {AudioResponse, audioResponseFailure} from "../utils/model_helpers/audio_
 import { getEntryController } from "../utils/controller/entryController";
 import { useEffect, useState } from "react";
 
-export const SinglePostView =  (id: string) => {
+export const SinglePostView =  (props: { id: string; }) => {
     const [val, setVal] = useState<AudioResponse>();
     const singleEntryControllerInterface = async () => {
-        const value = await getEntryController(id); 
+        const value = await getEntryController(props.id); 
         setVal(value);
     };
     useEffect(() => {
@@ -15,14 +15,18 @@ export const SinglePostView =  (id: string) => {
     if (audioResponseFailure(val) === true){
         return (
             <>
-            
+                <div>
+                    this post does not exist unfortunately....
+                </div>
             </>
         )
     }
 
     return (
         <>
-        
+            <div>
+                worked
+            </div>
         </>
     )
 }
