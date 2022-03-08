@@ -26,6 +26,7 @@ export const SearchView = () => {
                 type="text"
                 value={searchBar$.value}
                 onChange={(val) => searchBar$.next(val.target.value)}
+                placeholder="search by title.."
             />
             <div>
                 {filteredAudioPosts.map((post) => (

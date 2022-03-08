@@ -1,5 +1,5 @@
 
-type AudioResponse = {
+export type AudioResponse = {
     id: string; 
     name: string; 
     description: string; 
@@ -14,4 +14,12 @@ type AudioResponse = {
     link? : string;
 }
 
-export default AudioResponse;
+export const audioResponseFailure = (r: AudioResponse | undefined): boolean => {
+    if (r === undefined){
+        return true;
+    }
+    if (r.id === ""){
+        return true;
+    }
+    return false;
+}

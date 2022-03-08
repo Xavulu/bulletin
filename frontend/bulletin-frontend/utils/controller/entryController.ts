@@ -1,4 +1,4 @@
-import AudioResponse from "../model_helpers/audio_response";
+import { AudioResponse } from "../model_helpers/audio_response";
 import { Ok, Err, Result } from "ts-results"; 
 import ky from 'ky';
 
@@ -31,15 +31,23 @@ const fetcher = async (id: string): Promise<Result<AudioResponse, Error>> => {
 }
 
 
-export const getEntryController = async (id: string): Promise<Result<AudioResponse, Error>> => {
+export const getEntryController = async (id: string): Promise<AudioResponse> => {
     const entryFetcher: Result<AudioResponse, Error> = await fetcher(id);
     if (entryFetcher.err){
-        return new Err(new Error(entryFetcher.val.message));
+        const failed: AudioResponse = {
+            id: "",
+            name: "",
+            description: "",
+            title: "",
+            image: "",
+            upvotes: 0,
+            downvotes: 0,
+            source: "",
+            audio: "",
+            translation: [],
+            validUpload: false
+        };
+        return failed;
     }
-    return Ok(entryFetcher.val);
+    return entryFetcher.val;
 }
-
-
-
-
-export default {};

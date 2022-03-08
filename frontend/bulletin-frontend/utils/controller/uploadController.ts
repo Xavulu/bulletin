@@ -1,5 +1,5 @@
 import { updateList } from "./ListStreamController";
-import AudioResponse from "../model_helpers/audio_response";
+import { AudioResponse } from "../model_helpers/audio_response";
 import { Ok, Err, Result } from "ts-results"; 
 import AudioUpload from "../model_helpers/audio_upload_class";
 import ky from "ky";

@@ -1,5 +1,5 @@
 import { BehaviorSubject, map, combineLatestWith } from "rxjs";
-import AudioResponse from "../model_helpers/audio_response";
+import { AudioResponse } from "../model_helpers/audio_response";
 
 const rawData$ = new BehaviorSubject<AudioResponse[]>([]);
 
