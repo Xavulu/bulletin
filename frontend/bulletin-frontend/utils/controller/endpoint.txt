@@ -1,0 +1,29 @@
+base url: 
+https://onramp-bulletin.herokuapp.com/api 
+
+list endpoint: 
+
+- GET
+
+https://onramp-bulletin.herokuapp.com/api/listall
+
+upload endpoint:
+
+- POST
+
+https://onramp-bulletin.herokuapp.com/api/submit 
+
+get single endpoint: 
+
+- GET
+
+https://onramp-bulletin.herokuapp.com/api/single/{id}
+
+upvote and downvote endpoints: 
+
+- PATCH
+
+https://onramp-bulletin.herokuapp.com/api/upvote/{id}
+
+https://onramp-bulletin.herokuapp.com/api/downvote/{id}
+
