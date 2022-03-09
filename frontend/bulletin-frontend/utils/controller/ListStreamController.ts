@@ -31,3 +31,19 @@ export const updateList = (audio: AudioResponse): boolean => {
     return true;
 }
 
+export enum SortBy {
+    TITLE, 
+    NAME
+};
+
+export const sortListBy = (direction: SortBy) => {
+    let value = rawData$.value; 
+    if (direction === SortBy.TITLE){
+        value.sort((a,b) => (a.title.toLowerCase() > b.title.toLowerCase()) ? 1 : -1 );
+    }
+    if (direction === SortBy.NAME){
+        value.sort((a,b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1 );
+    }
+    rawData$.next(value);
+}
+

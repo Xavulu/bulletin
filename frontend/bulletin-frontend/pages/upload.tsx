@@ -1,9 +1,11 @@
+import PostFormView from "../components/uploadPostView";
+
 
 const UploadAudioView = () => {
     return (
         <>
             <div>
-                hiii
+                <PostFormView/>
             </div>
         </>
     );
