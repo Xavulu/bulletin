@@ -31,6 +31,12 @@ public class AudioController {
     // https://onramp-bulletin.herokuapp.com/api
 
     @CrossOrigin
+    @GetMapping("/ping")
+    public ResponseEntity<HttpStatus> wakeDyno(){
+        return new ResponseEntity<>(HttpStatus.OK);
+    } 
+
+    @CrossOrigin
     @GetMapping("/listall")
     public ResponseEntity<List<AudioUpload>> listAll(){
         try { 
