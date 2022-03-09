@@ -9,7 +9,7 @@ export const audioList$ = rawData$.pipe(
     map((response) =>
     response.map((r) => ({
         ...r, 
-        link: `/${r.id}`
+        link: `/play/${r.id}`
     }))
     )
 );

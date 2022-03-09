@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
-import { SinglePostView } from '../components/individualView';
+import { SinglePostView } from '../../components/individualView';
 import { useEffect } from 'react'; 
-import { waker } from '../utils/wake_up';
+import { waker } from '../../utils/wake_up';
 
 const SinglePostViewByID = () => {
     const router = useRouter();
