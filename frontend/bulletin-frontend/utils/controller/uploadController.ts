@@ -43,17 +43,19 @@ const uploadEntryController = async (
     image: string, 
     source: string, 
     audio: string, 
-    title: string): Promise<Result<boolean, Error>> => {
+    title: string): Promise<boolean> => {
         let upload =  new AudioUpload(name, description, image, source, audio, title);
         if(upload.validate() === false) {
-            return new Err(new Error('missing fields'));
+            console.log(new Error('missing fields'));
+            return false;
         }
         const post: Result<AudioResponse, Error> = await uploader(upload);
         if (post.err){
-            return new Err(new Error(post.val.message));
+            console.log(new Error(post.val.message));
+            return false;
         }
         const updateListResult: boolean = updateList(post.val);
-        return Ok(updateListResult);
+        return updateListResult;
 }
 
 export default uploadEntryController;

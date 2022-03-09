@@ -17,7 +17,7 @@ const fetcher = async (id: string): Promise<Result<AudioResponse, Error>> => {
         translation: [],
         validUpload: false
     };
-    const res = await ky.get(url)
+    await ky.get(url)
         .json<AudioResponse>()
         .then(success => {
             entry = success;

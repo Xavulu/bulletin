@@ -12,7 +12,7 @@ export const SinglePostView =  (props: { id: string; }) => {
         singleEntryControllerInterface();
     }, [])
 
-    if (audioResponseFailure(val) === true){
+    if (audioResponseFailure(val) === true || val === undefined){
         return (
             <>
                 <div>
