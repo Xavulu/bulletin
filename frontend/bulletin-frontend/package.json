@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^1.1.7",
     "@chakra-ui/react": "^1.8.6",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
@@ -20,9 +21,12 @@
     "observable-hooks": "^4.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-h5-audio-player": "^3.8.3",
     "react-hook-form": "^7.27.1",
+    "react-hooks-global-state": "^1.0.2",
     "react-select": "^5.2.2",
     "rxjs": "^7.5.4",
+    "swr": "^1.2.2",
     "ts-results": "^3.3.0",
     "zod": "^3.13.4"
   },
