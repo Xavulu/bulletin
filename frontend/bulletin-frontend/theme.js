@@ -13,6 +13,13 @@ const fonts = { mono: `'Menlo', monospace`};
 const theme = extendTheme({
     breakpoints,
     fonts,
+    /*styles: {
+        global: {
+            body: {
+                bg: 'gray.100',
+            }
+        }
+    },*/
 });
 
 

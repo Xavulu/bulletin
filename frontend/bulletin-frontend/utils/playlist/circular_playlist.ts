@@ -1,5 +1,6 @@
 import { AudioResponse } from '../model_helpers/audio_response';
 import { SortOrder } from '../controller/ListStreamController';
+import { History } from './history';
 
 
 export class PlayList{
@@ -7,6 +8,7 @@ export class PlayList{
     private _size: number;
     private _id_to_index: Map<string, number>;
     private _index_to_id: Map<number, string>;
+    private _history: History<AudioResponse> = new History();
     
     constructor(tracks: AudioResponse[]){
         this.tracks = tracks;
@@ -38,6 +40,7 @@ export class PlayList{
         } else {
             res = this._index_to_id.get(index + 1)
         }
+        this._history.put(id, this.getEntry(id)!);
         return res;
     } 
 
@@ -52,6 +55,7 @@ export class PlayList{
         } else {
             res = this._index_to_id.get(index - 1);
         }
+        this._history.put(id, this.getEntry(id)!);
         return res;
     }
 
@@ -75,6 +79,16 @@ export class PlayList{
             this._id_to_index.set(track.id, index);
             this._index_to_id.set(index, track.id);
         });
+    } 
+
+    history: Function = (): string[] => {
+        const val: string[] = this._history.getHistory();
+        return val;
+    }
+
+    lastPlayed: Function = (): string => {
+        const val: string[] = this._history.getHistory();
+        return val[val.length - 1];
     }
 
 }

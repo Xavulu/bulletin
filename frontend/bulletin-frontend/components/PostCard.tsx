@@ -15,7 +15,8 @@ import {
     Text, 
     Avatar, 
     LinkBox, 
-    LinkOverlay
+    LinkOverlay, 
+    Spacer
 } from "@chakra-ui/react";
 import { AudioResponse } from "../utils/model_helpers/audio_response";
 
@@ -27,22 +28,16 @@ const PostCard = ({
         const altText: string = `picture for ${post.title}`;
     return (
         <>
-            <Box
-                maxW="sm" 
-                borderWidth={.5}
-                borderRadius={6}
-                boxShadow="md"
-                pb="2"
-                height="80px"
+            <Flex
+                maxWidth="500px"
+                w={[300,400,500]}
+                border="1px"
+                rounded="lg"
             >
-                <HStack spacing={1}>
-                    <Box >
-                        <Text fontSize="xs">
-                            {post.title}
-                        </Text>
-                    </Box>
-                </HStack>
-            </Box>
+                <Box>
+                    { post.name }
+                </Box>
+            </Flex>
         </>
     )
 }

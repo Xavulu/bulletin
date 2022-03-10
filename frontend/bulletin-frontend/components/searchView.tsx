@@ -75,6 +75,8 @@ export const SearchView = () => {
                     overflowY="auto"
                     maxHeight="300px"
                     minHeight="300px"
+                    maxWidth="700px"
+                    w={[400,500,700]}
                     css={{
                         '&::-webkit-scrollbar': {
                           width: '4px',
@@ -87,9 +89,10 @@ export const SearchView = () => {
                           borderRadius: '24px',
                         },
                     }}
+
                 >
                     <SimpleGrid 
-                        columns={[1,null,2]}
+                        columns={[1,1,1]}
                         spacing="20px"
                     >
                         {filteredAudioPosts.map((post) => (

@@ -14,6 +14,7 @@ import {
     InputLeftElement, 
     Text, 
     Flex, 
+    Heading
 } from "@chakra-ui/react";
 import { useForm, SubmitHandler, Resolver } from "react-hook-form";
 import { useState, useEffect } from "react";
@@ -68,13 +69,33 @@ const PostFormView = () => {
     
     return (
         <>
-            <Flex width="full" align="center" justifyContent="center">
-                <Box p={8} maxWidth="500px" borderWidth={.5} borderRadius={6} boxShadow="md">
+            <Flex 
+                width="full" 
+                align="center" 
+                justifyContent="center" 
+                m="auto"
+                direction={ { base: 'column-reverse', md: 'row'} }
+            >
+                <Box 
+                    p={8} 
+                    maxWidth="700px" 
+                    borderWidth={.5} 
+                    borderRadius={6} 
+                    boxShadow="md"
+                    w={[400,500,700]}
+                    mt={6}
+                >
                 <Box my={4}>
                 
                 <div>
                     <form onSubmit={handleSubmit(formSubmitHandler)}>
-
+                        <Box textAlign="center">
+                            <Heading>
+                                <Text fontSize="md" color="pink-400">
+                                    Post Track
+                                </Text>
+                            </Heading>
+                        </Box>
                         <FormControl id="name" isInvalid={!!errors?.name} pb={2}>
                             <FormLabel htmlFor="name">
                                 <Flex>
@@ -249,11 +270,12 @@ const PostFormView = () => {
                                 placeholder="..."
                                 _placeholder={ { color: "pink.300" } }
                                 {...register('description', {required: true})}
-                                size="lg"
+                                size="md"
                                 resize="vertical"
                                 aria-label="description input field"
                                 variant="outline"
                                 focusBorderColor="pink.300"
+
                             />
                             </Tooltip>
                             <FormErrorMessage>
