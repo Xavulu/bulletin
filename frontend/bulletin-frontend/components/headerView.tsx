@@ -53,18 +53,6 @@ const HeaderView = () => {
                         </Button>
                     </NextLink> 
 
-                    <NextLink href="/play">
-                    <Button
-                            as="a"
-                            variant="ghost"
-                            aria-label="upload track page"
-                            my={5}
-                            w="100%"
-                        >
-                            Playlist 🎵
-                        </Button>
-                    </NextLink>
-
                 </Flex>
                 <IconButton
                     aria-label="Open menu"
@@ -136,17 +124,7 @@ const HeaderView = () => {
                         </Button>
                     </NextLink> 
 
-                    <NextLink href="/play">
-                    <Button
-                            as="a"
-                            variant="ghost"
-                            aria-label="play music page"
-                            my={2}
-                            w="100%"
-                        >
-                            Playlist 🎵
-                        </Button>
-                    </NextLink>
+            
             </Flex>
             </Flex>
             
