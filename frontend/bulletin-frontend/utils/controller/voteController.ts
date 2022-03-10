@@ -1,6 +1,6 @@
 import ky from "ky";
 import { Ok, Err, Result, Option } from "ts-results"; 
-import { refreshAfterVote } from "./ListStreamController";
+import { globalRefreshController, listEndPoint } from "./ListStreamController";
 
 export enum Direction {
     UP = 1, 
@@ -39,7 +39,7 @@ export const voteForPostController = async (
         if (res.err){
             return new Err(new Error(res.val.message));
         }
-        refreshAfterVote()
+        globalRefreshController(listEndPoint);
         return Ok(true);
 }
 

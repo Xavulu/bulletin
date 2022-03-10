@@ -3,7 +3,6 @@ import { BehaviorSubject, combineLatestWith, map } from 'rxjs';
 import { useMemo, useState } from 'react'; 
 import { useAudioList } from './streamContext';
 import PostCard from "./PostCard"
-import { SortOrder, sortListStreamController} from '../utils/controller/ListStreamController';
 import { 
     Input, 
     Center, 
@@ -50,7 +49,9 @@ export const SearchView = () => {
             >
             <Box
                 p={8} 
-                
+                borderWidth={.5} 
+                borderRadius={6} 
+                boxShadow="md"
             >
                  <VStack
                     divider={<StackDivider borderColor="gray.200"/>}
@@ -99,6 +100,7 @@ export const SearchView = () => {
                     <SimpleGrid 
                         columns={[1,1,1]}
                         spacing="20px"
+                        
                     >
                         {filteredAudioPosts.map((post) => (
                         <div key={post.shortid}>

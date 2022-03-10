@@ -24,11 +24,12 @@ const PostCard = ({
             <Flex
                 maxWidth="700px"
                 w={[300,450,600]}
-                borderWidth={.5} 
+                borderWidth={1} 
                 borderRadius={6} 
                 rounded="lg"
                 minHeight="125px"
                 maxHeight="125px"
+                
             >
                 <Box width='125px'>
                     <Image 
