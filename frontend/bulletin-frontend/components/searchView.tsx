@@ -2,19 +2,34 @@ import { useObservableState } from 'observable-hooks';
 import { BehaviorSubject, combineLatestWith, map } from 'rxjs'; 
 import { useMemo, useState } from 'react'; 
 import { useAudioList } from './streamContext';
+import { SortOrder, sortListStreamController } from '../utils/controller/ListStreamController';
 import PostCard from "./PostCard"
 import { 
     Input, 
     Center, 
-    VStack, 
+    VStack,  
     StackDivider, 
     Box, 
-    InputLeftAddon, 
+    InputLeftAddon,
+    InputRightAddon, 
     InputGroup, 
     SimpleGrid, 
-    Flex
+    Flex, 
+    Button, 
+    Stack, 
+    Text, 
+    Menu,
+    MenuButton,
+    MenuList,
+    MenuItem,
+    MenuItemOption,
+    MenuGroup,
+    MenuOptionGroup,
+    MenuDivider,
+
 } from '@chakra-ui/react';
-import { SearchIcon } from '@chakra-ui/icons'
+import { SearchIcon, ChevronDownIcon } from '@chakra-ui/icons'
+//import { audioListByTitle$ } from '../utils/controller/ListStreamController';
 
 
 
@@ -22,6 +37,15 @@ import { SearchIcon } from '@chakra-ui/icons'
 export const SearchView = () => {
     const { audioList$ } = useAudioList();
     const searchBar$ = useMemo(() => new BehaviorSubject(""), []); 
+    const [ active, setActive ] = useState('1');
+    
+    const byName = () =>{
+        sortListStreamController(SortOrder.NAME);
+    }
+
+    const byTitle = () =>{
+        sortListStreamController(SortOrder.TITLE);
+    }
 
     const [filteredAudioPosts] = useObservableState(
         () => 
@@ -49,7 +73,7 @@ export const SearchView = () => {
             >
             <Box
                 p={8} 
-                borderWidth={.5} 
+                borderWidth={1} 
                 borderRadius={6} 
                 boxShadow="md"
             >
@@ -60,10 +84,9 @@ export const SearchView = () => {
                  >
                 <Box>
                     <Center>
+                        <VStack>
+                        <Box>
                         <InputGroup>
-                            <InputLeftAddon>
-                                <SearchIcon color="gray.300"/>
-                            </InputLeftAddon>
                             <Input
                                 type="text"
                                 value={searchBar$.value}
@@ -73,8 +96,29 @@ export const SearchView = () => {
                                 focusBorderColor="pink.300"
                                 maxWidth="md"
                                 minWidth="xs"
+                                borderWidth={2}
                             />
-                        </InputGroup>
+                            <InputRightAddon>
+                                <SearchIcon color="gray.300"/>
+                            </InputRightAddon>
+                        </InputGroup> 
+                        </Box>
+                        <Box>
+                                <Menu>
+                                    <MenuButton as={Button} variant="ghost">
+                                        sort <ChevronDownIcon />
+                                    </MenuButton>
+                                    <MenuList>
+                                        <Button variant="ghost" onClick={() => byName()}>
+                                            <MenuItem>by name</MenuItem>
+                                        </Button> 
+                                        <Button variant="ghost" onClick={() => byTitle()}>
+                                            <MenuItem>by title</MenuItem>
+                                        </Button>
+                                    </MenuList>
+                                </Menu>
+                        </Box>
+                        </VStack>
                     </Center>
                 </Box>
                 <Box 
@@ -102,6 +146,7 @@ export const SearchView = () => {
                         spacing="20px"
                         
                     >
+                        
                         {filteredAudioPosts.map((post) => (
                         <div key={post.shortid}>
                             <PostCard

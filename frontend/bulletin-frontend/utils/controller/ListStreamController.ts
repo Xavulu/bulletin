@@ -6,9 +6,19 @@ import { nanoid } from "nanoid";
 
 const rawData$ = new BehaviorSubject<AudioResponse[]>([]);
 
+const rawDataByTitle$ = new BehaviorSubject<AudioResponse[]>([]);
+
 export const listEndPoint: string = "https://onramp-bulletin.herokuapp.com/api/listall";
 
 export const audioList$ = rawData$.pipe(
+    map((response) =>
+    response.map((r) => ({
+        ...r, 
+    }))
+    )
+); 
+
+export const audioListByTitle$ = rawData$.pipe(
     map((response) =>
     response.map((r) => ({
         ...r, 
@@ -24,8 +34,21 @@ fetch(listEndPoint, {
             x.link = `/play/${x.id}`;
             x.shortid = nanoid(10)
         })
+        data.sort((a,b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1 );
         rawData$.next(data)
     });
+
+    fetch(listEndPoint, {
+        method: 'GET',
+        }).then(response => response.json())
+        .then((data: AudioResponse[]) => {
+            data.forEach(x => {
+                x.link = `/play/${x.id}`;
+                x.shortid = nanoid(10)
+            })
+            data.sort((a,b) => (a.title.toLowerCase() > b.title.toLowerCase()) ? 1 : -1 );
+            rawDataByTitle$.next(data)
+        });
 
 export const globalRefreshController = async (url: string) => {
     fetch(url, {
@@ -62,6 +85,8 @@ export const sortListStreamController = (direction: SortOrder) => {
     }
     rawData$.next(value);
 }
+
+
 
 export const PlaylistController = (): PlayList =>{
     const value = rawData$.value;

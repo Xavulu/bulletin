@@ -24,7 +24,7 @@ const PostCard = ({
             <Flex
                 maxWidth="700px"
                 w={[300,450,600]}
-                borderWidth={1} 
+                borderWidth={2} 
                 borderRadius={6} 
                 rounded="lg"
                 minHeight="125px"

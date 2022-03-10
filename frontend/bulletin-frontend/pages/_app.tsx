@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app'
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react'
 import { AudioListProvider } from '../components/streamContext'
 import theme from '../theme';
 
@@ -7,9 +7,15 @@ import theme from '../theme';
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider resetCSS={true} theme={theme}>
-      <AudioListProvider>
-        <Component {...pageProps} />
-      </AudioListProvider>
+      <ColorModeProvider
+        options={{ 
+          useSystemColorMode: false,
+        }}
+      >
+        <AudioListProvider>
+          <Component {...pageProps} />
+        </AudioListProvider>
+      </ColorModeProvider>
     </ChakraProvider>
   )
 }

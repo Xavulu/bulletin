@@ -49,8 +49,6 @@ const PostFormView = () => {
         },
     });
 
-    
-
     const uploadControllerInterface = async (data: MyFormInputs): Promise<Error | undefined> => {
         
         const res = await uploadEntryController(data.name, data.description, data.image, data.source, data.audio, data.title);
@@ -60,6 +58,7 @@ const PostFormView = () => {
         }
         return undefined;
     }
+        
     
     const formSubmitHandler: SubmitHandler<MyFormInputs> = (data: MyFormInputs) => {
         console.log(data);
@@ -122,6 +121,7 @@ const PostFormView = () => {
                                     size="sm"
                                     variant="flushed"
                                     focusBorderColor="pink.300"
+                                    borderWidth={2}
                                 /> 
                             </InputGroup>
                             
@@ -154,6 +154,7 @@ const PostFormView = () => {
                                     size="sm"
                                     variant="flushed"
                                     focusBorderColor="pink.300"
+                                    borderWidth={2}
                                 />
                             </InputGroup>
                             </Tooltip>
@@ -185,6 +186,7 @@ const PostFormView = () => {
                                     size="sm"
                                     variant="flushed"
                                     focusBorderColor="pink.300"
+                                    borderWidth={2}
                                 />
                             </InputGroup>
                             
@@ -217,6 +219,7 @@ const PostFormView = () => {
                                     size="sm"
                                     variant="flushed"
                                     focusBorderColor="pink.300"
+                                    borderWidth={2}
                                 />
                             </InputGroup>
                             
@@ -249,6 +252,7 @@ const PostFormView = () => {
                                     size="sm"
                                     variant="flushed"
                                     focusBorderColor="pink.300"
+                                    borderWidth={2}
                                 />
                             </InputGroup>
                             
@@ -278,6 +282,7 @@ const PostFormView = () => {
                                 aria-label="description input field"
                                 variant="outline"
                                 focusBorderColor="pink.300"
+                                borderWidth={2}
 
                             />
                             </Tooltip>

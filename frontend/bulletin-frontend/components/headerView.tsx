@@ -1,6 +1,8 @@
 import { useColorMode, Switch, Flex, Button, IconButton} from '@chakra-ui/react';
 import { useState } from 'react';
-import { HamburgerIcon, CloseIcon}  from '@chakra-ui/icons';
+import { HamburgerIcon, CloseIcon, SearchIcon}  from '@chakra-ui/icons';
+import { MdPlaylistPlay } from 'react-icons/md';
+import { AiOutlineHome } from 'react-icons/ai';
 import NextLink from 'next/link';
 
 const HeaderView = () => {
@@ -35,11 +37,11 @@ const HeaderView = () => {
                             my={5}
                             w="100%"
                         >
-                            Home
+                            Home 🏠
                         </Button>
                     </NextLink> 
 
-                    <NextLink href="/upload">
+                    <NextLink href="/search">
                     <Button
                             as="a"
                             variant="ghost"
@@ -47,7 +49,19 @@ const HeaderView = () => {
                             my={5}
                             w="100%"
                         >
-                            Upload
+                            Search 🔎
+                        </Button>
+                    </NextLink> 
+
+                    <NextLink href="/play">
+                    <Button
+                            as="a"
+                            variant="ghost"
+                            aria-label="upload track page"
+                            my={5}
+                            w="100%"
+                        >
+                            Playlist 🎵
                         </Button>
                     </NextLink>
 
@@ -64,6 +78,7 @@ const HeaderView = () => {
                         'none', 
                         'none'
                     ]}
+                    variant="ghost"
                     onClick={() => changeDisplay('flex')}
                 />
             </Flex>
@@ -89,6 +104,7 @@ const HeaderView = () => {
                         icon={
                             <CloseIcon/>
                         }
+                        variant="ghost"
                         onClick={() => changeDisplay('none')}
                     />
                 </Flex>
@@ -101,22 +117,34 @@ const HeaderView = () => {
                             as="a"
                             variant="ghost"
                             aria-label="home page"
-                            my={5}
+                            my={2}
                             w="100%"
                         >
-                            Home
+                            Home 🏠
                         </Button>
                     </NextLink> 
 
-                    <NextLink href="/upload">
+                    <NextLink href="/search">
                     <Button
                             as="a"
                             variant="ghost"
-                            aria-label="upload track page"
-                            my={5}
+                            aria-label="search track page"
+                            my={2}
                             w="100%"
                         >
-                            Upload
+                            Search 🔎
+                        </Button>
+                    </NextLink> 
+
+                    <NextLink href="/play">
+                    <Button
+                            as="a"
+                            variant="ghost"
+                            aria-label="play music page"
+                            my={2}
+                            w="100%"
+                        >
+                            Playlist 🎵
                         </Button>
                     </NextLink>
             </Flex>
