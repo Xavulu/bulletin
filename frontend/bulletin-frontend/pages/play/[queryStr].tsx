@@ -22,15 +22,14 @@ import {
     
 } from "@chakra-ui/react";
 import NotFound from '../../components/fourohfour';
+import { PlayList } from "../../utils/playlist/circular_playlist"
 
 
 
 const SinglePostViewByID = () => {
     const [val, setVal] = useState<AudioResponse>();
-    const singleEntryControllerInterface = async (id: string) => {
-        const value = await getEntryController(id); 
-        setVal(value);
-    };
+    const [playlist, setPlaylist] = useGlobalState("playlist");
+    const [single, setSingle] = useState<boolean>(false);
     
         
     const router = useRouter();
@@ -48,15 +47,23 @@ const SinglePostViewByID = () => {
         id = queryStr;
     } 
 
-    useEffect(() => {
-        singleEntryControllerInterface(id);
-    }, []);
 
-    if (audioResponseFailure(val) === true || val === undefined){
+    const track = playlist.getEntry(id); 
+    if ( track === undefined){
         return (
             <NotFound/>
         )
     }
+
+    const nextTrack = playlist.getNext(track.id);
+    const prevTrack = playlist.getPrev(track.id);
+
+    if (nextTrack === undefined || prevTrack === undefined || playlist.isEmpty()){
+        setSingle(true);
+    }
+
+    
+
 
     return (
         <div>
