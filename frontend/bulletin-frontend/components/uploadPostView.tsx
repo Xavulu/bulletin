@@ -14,7 +14,9 @@ import {
     InputLeftElement, 
     Text, 
     Flex, 
-    Heading
+    Heading, 
+     
+    
 } from "@chakra-ui/react";
 import { useForm, SubmitHandler, Resolver } from "react-hook-form";
 import { useState, useEffect } from "react";
@@ -47,6 +49,8 @@ const PostFormView = () => {
         },
     });
 
+    
+
     const uploadControllerInterface = async (data: MyFormInputs): Promise<Error | undefined> => {
         
         const res = await uploadEntryController(data.name, data.description, data.image, data.source, data.audio, data.title);
@@ -68,7 +72,7 @@ const PostFormView = () => {
     };
     
     return (
-        <>
+        <>  
             <Flex 
                 width="full" 
                 align="center" 
@@ -80,9 +84,7 @@ const PostFormView = () => {
                 <Box 
                     p={8} 
                     maxWidth="700px" 
-                    borderWidth={.5} 
-                    borderRadius={6} 
-                    boxShadow="md"
+                    
                     w={[400,500,700]}
                     mt={6}
                 >
@@ -93,7 +95,7 @@ const PostFormView = () => {
                         <Box textAlign="center">
                             <Heading>
                                 <Text fontSize="md" color="pink-400">
-                                    Post Track
+                                    Upload a Track
                                 </Text>
                             </Heading>
                         </Box>

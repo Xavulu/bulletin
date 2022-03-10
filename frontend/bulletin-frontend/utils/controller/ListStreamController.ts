@@ -6,17 +6,17 @@ import { nanoid } from "nanoid";
 
 const rawData$ = new BehaviorSubject<AudioResponse[]>([]);
 
+export const listEndPoint: string = "https://onramp-bulletin.herokuapp.com/api/listall";
+
 export const audioList$ = rawData$.pipe(
     map((response) =>
     response.map((r) => ({
         ...r, 
-        //link: `/play/${r.id}`, 
-        //shortid: nanoid(10),
     }))
     )
 );
 
-fetch("https://onramp-bulletin.herokuapp.com/api/listall", {
+fetch(listEndPoint, {
     method: 'GET',
     }).then(response => response.json())
     .then((data: AudioResponse[]) => {
@@ -27,8 +27,8 @@ fetch("https://onramp-bulletin.herokuapp.com/api/listall", {
         rawData$.next(data)
     });
 
-export const refreshAfterVote = async () => {
-    fetch("https://onramp-bulletin.herokuapp.com/api/listall", {
+export const globalRefreshController = async (url: string) => {
+    fetch(url, {
     method: 'GET',
     }).then(response => response.json())
     .then((data: AudioResponse[]) => {
