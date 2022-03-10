@@ -62,12 +62,6 @@ const Home: NextPage = () => {
                 as={ArrowForwardIcon}
                 color="pink.300"
               />
-          </ListItem> 
-          <ListItem>
-              <ListIcon
-                as={ArrowForwardIcon}
-                color="pink.300"
-              />
               <UploadModal/>
           </ListItem>
       </List>
