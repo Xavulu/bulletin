@@ -63,4 +63,4 @@ model view controller + reactive programming
 
 -in the rare cases the view submits data its sent to the backend by the controller and then the results are processed and placed in the stream for the view to consume 
 
-
+I didn't get to take screenshots unfortunately
