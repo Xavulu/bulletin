@@ -18,13 +18,6 @@ export const audioList$ = rawData$.pipe(
     )
 ); 
 
-export const audioListByTitle$ = rawData$.pipe(
-    map((response) =>
-    response.map((r) => ({
-        ...r, 
-    }))
-    )
-);
 
 fetch(listEndPoint, {
     method: 'GET',
@@ -38,17 +31,6 @@ fetch(listEndPoint, {
         rawData$.next(data)
     });
 
-    fetch(listEndPoint, {
-        method: 'GET',
-        }).then(response => response.json())
-        .then((data: AudioResponse[]) => {
-            data.forEach(x => {
-                x.link = `/play/${x.id}`;
-                x.shortid = nanoid(10)
-            })
-            data.sort((a,b) => (a.title.toLowerCase() > b.title.toLowerCase()) ? 1 : -1 );
-            rawDataByTitle$.next(data)
-        });
 
 export const globalRefreshController = async (url: string) => {
     fetch(url, {
