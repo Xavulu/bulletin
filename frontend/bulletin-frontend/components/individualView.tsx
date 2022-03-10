@@ -3,16 +3,8 @@ import { getEntryController } from "../utils/controller/entryController";
 import { useEffect, useState } from "react";
 import { setGlobalState, useGlobalState } from '../utils/global_state/global';
 import { 
-    FormErrorMessage, 
-    FormLabel, 
-    FormControl, 
-    Input, 
     Button,  
     Box, 
-    Textarea, 
-    Tooltip, 
-    InputGroup, 
-    InputLeftElement, 
     Text, 
     Flex, 
     Heading, 
@@ -22,12 +14,22 @@ import {
     AccordionIcon, 
     AccordionItem,
     AccordionPanel, 
-    Spacer
+    Spacer, 
+    Center, 
+    HStack, 
+    ButtonGroup, 
+    IconButton, 
+    Link
 } from "@chakra-ui/react";
 import { PlayList } from "../utils/playlist/circular_playlist"
 import { BiUpvote, BiDownvote } from "react-icons/bi";
 import { PlaylistController } from '../utils/controller/ListStreamController';
 import NotFound from './fourohfour';
+import { 
+    AddIcon, 
+    MinusIcon
+} from '@chakra-ui/icons';
+import { voteForPostController, Direction } from '../utils/controller/voteController';
 
 
 
@@ -47,7 +49,9 @@ export const SinglePostView =  (props: { id: string}) => {
         
     if (audioResponseFailure(val) === true || val === undefined){
         return (
-            <NotFound/>
+            <div>
+                loading.....
+            </div>
         )
     }
 
@@ -75,13 +79,32 @@ export const SinglePostView =  (props: { id: string}) => {
     }
     console.log(nextlink, prevLink);
 
+    const downvote = () => {
+        let res = voteForPostController(val.id, Direction.DOWN);
+        console.log(res);
+    }
+
+    const upvote = () => {
+        let res = voteForPostController(val.id, Direction.UP);
+        console.log(res);
+    }
+
 
     return (
-        <>
+        <Flex
+            alignItems="center"
+            height="100vh"
+            flexDir="column"
+            align="center"
+            justify="center"
+            
+        >
+        <Box>
             <Flex
-            maxWidth="700px"
+            maxWidth="500px"
             width="100%"
             rounded="lg"
+            border="1px"
         >
             <Box
                 width="125px"
@@ -90,6 +113,18 @@ export const SinglePostView =  (props: { id: string}) => {
                     boxSize="125px"
                     src={val.image}>
                 </Image>
+                <ButtonGroup size='sm' isAttached variant='outline'>
+                <IconButton aria-label='Add to friends' 
+                    onClick={() => upvote()}
+                >
+                    <AddIcon/>
+                </IconButton>
+                <IconButton aria-label='Add to friends'
+                    onClick={() => downvote()}
+                >
+                    <MinusIcon/>
+                </IconButton>
+            </ButtonGroup>
             </Box>
             <Flex 
                 ml={4}
@@ -124,7 +159,7 @@ export const SinglePostView =  (props: { id: string}) => {
                                 <Text
                                     fontSize={["sm", "md", "lg"]}
                                 >
-                                    nothing here yet
+                                    {val.description}
                                 </Text>
                             </AccordionPanel>
                         </AccordionItem>
@@ -153,17 +188,32 @@ export const SinglePostView =  (props: { id: string}) => {
                         marginTop: "auto"
                     }}
                 >
-                    <audio 
-                        style={{ 
-                            width: "100%"
-                        }}
-                        controls
-                    >
-                        <source src={val.audio} type="audio/mpeg"></source>
+                    <audio style={{
+                         width: '100%',
+
+
+                        }} controls
+                        src={val.audio}
+                        >
+                        
                     </audio>
+                    <ButtonGroup size='sm' isAttached variant='outline'>
+                <Button aria-label='Add to friends' 
+                    
+                >
+                    <Link href={nextlink}>next track</Link>
+                </Button>
+                <Button aria-label='Add to friends'
+                    
+                >
+                    <Link href={prevLink}>prev track</Link>
+                </Button>
+            </ButtonGroup>
                 </div>
             </Flex>
+            
         </Flex>
-        </>
+        </Box>
+        </Flex>
     )
 }

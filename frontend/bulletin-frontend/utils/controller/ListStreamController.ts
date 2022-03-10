@@ -78,3 +78,10 @@ export const PlaylistController = (): PlayList =>{
     return playlist;
 }
 
+export const getFirst = (): string => {
+    let value = rawData$.value;
+    const first = value[0]; 
+    rawData$.next(value);
+    const link = `/play/${first.id}`; 
+    return link;
+}
