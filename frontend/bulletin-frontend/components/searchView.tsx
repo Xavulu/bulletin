@@ -55,9 +55,9 @@ export const SearchView = () => {
                 <Box>
                     <Center>
                         <InputGroup>
-                            <InputLeftAddon
-                                children={<SearchIcon color="gray.300"/>}
-                            />
+                            <InputLeftAddon>
+                                <SearchIcon color="gray.300"/>
+                            </InputLeftAddon>
                             <Input
                                 type="text"
                                 value={searchBar$.value}

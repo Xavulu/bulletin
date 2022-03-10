@@ -10,8 +10,8 @@ export const audioList$ = rawData$.pipe(
     map((response) =>
     response.map((r) => ({
         ...r, 
-        link: `/play/${r.id}`, 
-        shortid: nanoid(10),
+        //link: `/play/${r.id}`, 
+        //shortid: nanoid(10),
     }))
     )
 );
@@ -19,13 +19,25 @@ export const audioList$ = rawData$.pipe(
 fetch("https://onramp-bulletin.herokuapp.com/api/listall", {
     method: 'GET',
     }).then(response => response.json())
-    .then((data: AudioResponse[]) => rawData$.next(data));
+    .then((data: AudioResponse[]) => {
+        data.forEach(x => {
+            x.link = `/play/${x.id}`;
+            x.shortid = nanoid(10)
+        })
+        rawData$.next(data)
+    });
 
 export const refreshAfterVote = async () => {
-    await fetch("https://onramp-bulletin.herokuapp.com/api/listall", {
+    fetch("https://onramp-bulletin.herokuapp.com/api/listall", {
     method: 'GET',
     }).then(response => response.json())
-    .then((data: AudioResponse[]) => rawData$.next(data));
+    .then((data: AudioResponse[]) => {
+        data.forEach(x => {
+            x.link = `/play/${x.id}`;
+            x.shortid = nanoid(10)
+        })
+        rawData$.next(data)
+    });
 }
 
 export const updateList = (audio: AudioResponse): boolean => {
@@ -51,35 +63,10 @@ export const sortListStreamController = (direction: SortOrder) => {
     rawData$.next(value);
 }
 
-/*
-export const sortListBy = (arr: AudioResponse[], direction: SortBy): AudioResponse[] => {
-    let sorted: AudioResponse[] = arr; 
-    if (direction === SortBy.TITLE){
-        sorted.sort((a,b) => (a.title.toLowerCase() > b.title.toLowerCase()) ? 1 : -1 );
-    }
-    if (direction === SortBy.NAME){
-        sorted.sort((a,b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1 );
-    }
-    return sorted;
+export const PlaylistController = (): PlayList =>{
+    const value = rawData$.value;
+    const playlist = new PlayList(value);
+    rawData$.next(value);
+    return playlist;
 }
-*/
-export const refreshListSWRController = async (url: string): Promise<Result<PlayList, Error>> => {
-    let refreshed: AudioResponse[] = [];
-    await fetch(url, { 
-        method: "GET", 
 
-    }).then(response => response.json())
-        .then((data: AudioResponse[]) => {
-            refreshed = [...data]; 
-            rawData$.next(refreshed);
-        })
-        .catch(error => {
-            console.log("failed to refresh list:\n");
-            console.log(error);
-            return new Err(new Error("failed to refresh list"));
-        }) 
-
-    let playlist: PlayList = new PlayList(refreshed);
-
-    return Ok(playlist);
-}

@@ -19,6 +19,10 @@ export class PlayList{
         });
     }
 
+    isEmpty: Function = ():  boolean => {
+        return this._size > 1;
+    }
+
     getFirst: Function = (): AudioResponse => {
         return this.tracks[0];
     }

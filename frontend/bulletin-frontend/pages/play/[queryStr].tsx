@@ -4,6 +4,10 @@ import { useEffect } from 'react';
 import { waker } from '../../utils/wake_up';
 
 const SinglePostViewByID = () => {
+    useEffect(() => {
+        waker();
+      }, [])
+
     const router = useRouter();
     const { queryStr } = router.query;
     let id = "";
@@ -22,10 +26,6 @@ const SinglePostViewByID = () => {
     } else {
         id = queryStr;
     } 
-
-    useEffect(() => {
-        waker();
-      }, [])
 
     return (
         <div>

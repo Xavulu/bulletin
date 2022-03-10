@@ -87,10 +87,9 @@ const PostFormView = () => {
                                 hasArrow
                             >
                             <InputGroup>
-                                <InputLeftElement 
-                                    pointerEvents="none"
-                                    children={ <AddIcon color="gray.300"/> }
-                                />
+                                <InputLeftElement pointerEvents="none"> 
+                                    <AddIcon color="gray.300"/>  
+                                </InputLeftElement>
                                 <Input
                                     placeholder="podcast/artist name" 
                                     _placeholder={ { color: "pink.300" } }
@@ -120,10 +119,9 @@ const PostFormView = () => {
                                 hasArrow 
                             >
                             <InputGroup>
-                                <InputLeftElement 
-                                    pointerEvents="none"
-                                    children={ <AddIcon color="gray.300"/> }
-                                />
+                                <InputLeftElement pointerEvents="none"> 
+                                    <AddIcon color="gray.300"/>  
+                                </InputLeftElement>
                                 <Input
                                     placeholder="episode/song title"
                                     _placeholder={ { color: "pink.300" } }
@@ -152,10 +150,9 @@ const PostFormView = () => {
                                 hasArrow
                             >
                             <InputGroup>
-                                <InputLeftElement 
-                                    pointerEvents="none"
-                                    children={ <LinkIcon color="gray.300"/> }
-                                />
+                                <InputLeftElement pointerEvents="none"> 
+                                    <LinkIcon color="gray.300"/>  
+                                </InputLeftElement>
                                 <Input
                                     placeholder="https://example.com/pic.jpg"
                                     _placeholder={ { color: "pink.300" } }
@@ -185,10 +182,9 @@ const PostFormView = () => {
                                 hasArrow
                             >
                             <InputGroup>
-                                <InputLeftElement 
-                                    pointerEvents="none"
-                                    children={ <LinkIcon color="gray.300"/> }
-                                />
+                                <InputLeftElement pointerEvents="none"> 
+                                    <LinkIcon color="gray.300"/>  
+                                </InputLeftElement>
                                 <Input
                                     placeholder="https://example.com"
                                     _placeholder={ { color: "pink.300" } }
@@ -218,10 +214,9 @@ const PostFormView = () => {
                                 hasArrow
                             >
                             <InputGroup>
-                                <InputLeftElement 
-                                    pointerEvents="none"
-                                    children={ <LinkIcon color="gray.300"/> }
-                                />
+                                <InputLeftElement pointerEvents="none"> 
+                                    <LinkIcon color="gray.300"/>  
+                                </InputLeftElement>
                                 <Input
                                     placeholder="https://example.com/podcast.mp3"
                                     _placeholder={ { color: "pink.300" } }
