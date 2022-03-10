@@ -17,6 +17,8 @@ import  UploadModal  from '../components/uploadPostModal';
 import useSwr, { mutate } from 'swr';
 import { globalRefreshController, listEndPoint } from '../utils/controller/ListStreamController';
 import { setGlobalState, useGlobalState } from '../utils/global_state/global';
+import { PlaylistController } from '../utils/controller/ListStreamController';
+import { PlayList } from '../utils/playlist/circular_playlist';
 
 
 const Home: NextPage = () => {
@@ -38,9 +40,6 @@ const Home: NextPage = () => {
     if (!data || error) {
       console.log('controller failed to rehydrate data');
     };
-
-    const [playlist, setPlaylist] = useGlobalState("playlist"); 
-    console.log(playlist);
 
   return (
     <Flex

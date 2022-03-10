@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router';
-import { waker } from '../../utils/wake_up';
-import { setGlobalState, useGlobalState } from '../../utils/global_state/global';
-import { AudioResponse, audioResponseFailure } from '../../utils/model_helpers/audio_response';
-import { getEntryController } from '../../utils/controller/entryController';
+import { setGlobalState, useGlobalState, langmap } from '../../utils/global_state/global';
+import { AudioResponse } from '../../utils/model_helpers/audio_response';
 import { useEffect, useState } from "react";
 import { 
     FormErrorMessage, 
@@ -18,20 +16,18 @@ import {
     Text, 
     Flex, 
     Heading, 
+    Image
      
     
 } from "@chakra-ui/react";
 import NotFound from '../../components/fourohfour';
 import { PlayList } from "../../utils/playlist/circular_playlist"
+import { PlaylistController } from '../../utils/controller/ListStreamController';
+import { SinglePostView } from '../../components/individualView';
 
 
 
 const SinglePostViewByID = () => {
-    const [val, setVal] = useState<AudioResponse>();
-    const [playlist, setPlaylist] = useGlobalState("playlist");
-    const [single, setSingle] = useState<boolean>(false);
-    
-        
     const router = useRouter();
     const { queryStr } = router.query;
     let id = "";
@@ -46,29 +42,10 @@ const SinglePostViewByID = () => {
     } else {
         id = queryStr;
     } 
-
-
-    const track = playlist.getEntry(id); 
-    if ( track === undefined){
-        return (
-            <NotFound/>
-        )
-    }
-
-    const nextTrack = playlist.getNext(track.id);
-    const prevTrack = playlist.getPrev(track.id);
-
-    if (nextTrack === undefined || prevTrack === undefined || playlist.isEmpty()){
-        setSingle(true);
-    }
-
-    
-
-
     return (
-        <div>
-            
-        </div>
+        <SinglePostView 
+            id={id}
+        />
     );
 }
 
