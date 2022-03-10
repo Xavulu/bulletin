@@ -1,12 +1,10 @@
 import { BehaviorSubject, map} from "rxjs";
-import { AudioResponse } from "../model_helpers/audio_response";
-import { Ok, Err, Result } from "ts-results"; 
+import { AudioResponse } from "../model_helpers/audio_response"; 
 import { PlayList } from "../playlist/circular_playlist";
 import { nanoid } from "nanoid";
 
 const rawData$ = new BehaviorSubject<AudioResponse[]>([]);
 
-const rawDataByTitle$ = new BehaviorSubject<AudioResponse[]>([]);
 
 export const listEndPoint: string = "https://onramp-bulletin.herokuapp.com/api/listall";
 
@@ -33,6 +31,7 @@ fetch(listEndPoint, {
 
 
 export const globalRefreshController = async (url: string) => {
+    let res: AudioResponse[] = [];
     fetch(url, {
     method: 'GET',
     }).then(response => response.json())
@@ -42,7 +41,9 @@ export const globalRefreshController = async (url: string) => {
             x.shortid = nanoid(10)
         })
         rawData$.next(data)
+        res = [...data];
     });
+    return res;
 }
 
 export const updateList = (audio: AudioResponse): boolean => {

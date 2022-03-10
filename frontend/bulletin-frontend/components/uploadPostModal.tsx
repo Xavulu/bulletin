@@ -11,7 +11,7 @@ import {
     ButtonGroup
 } from "@chakra-ui/react"; 
 import PostFormView from "./uploadPostView";
-import { AiOutlineUpload } from 'react-icons/ai'; 
+
 
 
 
@@ -20,15 +20,13 @@ const UploadModal = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
         <>
-        <ButtonGroup size="sm" isAttached variant="outline">
-            <Button mr="-px">upload track</Button>
             <Button 
                 onClick={onOpen}
-                
+                variant="ghost"
             >
-                <AiOutlineUpload/>
+                upload a track
             </Button>
-        </ButtonGroup>
+        
             <Modal id="upload modal, close on esc" isOpen={isOpen} onClose={onClose} isCentered closeOnEsc={true}>
                 <ModalOverlay/>
                 <ModalContent>

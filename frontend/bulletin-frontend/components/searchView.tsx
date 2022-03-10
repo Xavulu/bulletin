@@ -10,31 +10,41 @@ import {
     VStack,  
     StackDivider, 
     Box, 
-    InputLeftAddon,
     InputRightAddon, 
     InputGroup, 
     SimpleGrid, 
     Flex, 
     Button, 
-    Stack, 
-    Text, 
     Menu,
     MenuButton,
     MenuList,
     MenuItem,
-    MenuItemOption,
-    MenuGroup,
-    MenuOptionGroup,
-    MenuDivider,
 
 } from '@chakra-ui/react';
 import { SearchIcon, ChevronDownIcon } from '@chakra-ui/icons'
-//import { audioListByTitle$ } from '../utils/controller/ListStreamController';
+import useSwr, { mutate } from 'swr';
+import { globalRefreshController, listEndPoint } from '../utils/controller/ListStreamController';
 
 
 
 
 export const SearchView = () => {
+
+    const { data, error } = useSwr(
+        listEndPoint, 
+        globalRefreshController,
+        {
+          revalidateOnReconnect: true,
+          refreshWhenOffline: false, 
+          errorRetryInterval: 6000, 
+          errorRetryCount: 10, 
+          refreshInterval: 180000 * 6,
+        }
+      );
+      if (!data || error) {
+        console.log('controller failed to rehydrate data');
+      };
+
     const { audioList$ } = useAudioList();
     const searchBar$ = useMemo(() => new BehaviorSubject(""), []); 
     const [ active, setActive ] = useState('1');

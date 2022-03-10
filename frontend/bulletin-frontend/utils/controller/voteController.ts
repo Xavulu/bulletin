@@ -39,7 +39,8 @@ export const voteForPostController = async (
         if (res.err){
             return new Err(new Error(res.val.message));
         }
-        globalRefreshController(listEndPoint);
+        const throwaway = globalRefreshController(listEndPoint);
+        console.log(throwaway);
         return Ok(true);
 }
 
