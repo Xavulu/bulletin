@@ -47,6 +47,12 @@ export const SearchView = () => {
                 px={4}
                 minH="100vh"
             >
+            <Box
+                p={8} 
+                borderWidth={.5} 
+                borderRadius={6} 
+                boxShadow="md"
+            >
                  <VStack
                     divider={<StackDivider borderColor="gray.200"/>}
                     spacing={4}
@@ -105,6 +111,7 @@ export const SearchView = () => {
                     </SimpleGrid>
                 </Box>
                 </VStack>
+                </Box>
             </Flex>
         </>
     );

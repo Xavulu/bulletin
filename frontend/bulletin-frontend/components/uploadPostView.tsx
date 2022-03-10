@@ -75,6 +75,7 @@ const PostFormView = () => {
                 justifyContent="center" 
                 m="auto"
                 direction={ { base: 'column-reverse', md: 'row'} }
+               
             >
                 <Box 
                     p={8} 

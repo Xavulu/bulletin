@@ -40,7 +40,6 @@ export class PlayList{
         } else {
             res = this._index_to_id.get(index + 1)
         }
-        this._history.put(id, this.getEntry(id)!);
         return res;
     } 
 
@@ -55,7 +54,6 @@ export class PlayList{
         } else {
             res = this._index_to_id.get(index - 1);
         }
-        this._history.put(id, this.getEntry(id)!);
         return res;
     }
 
@@ -89,6 +87,10 @@ export class PlayList{
     lastPlayed: Function = (): string => {
         const val: string[] = this._history.getHistory();
         return val[val.length - 1];
+    }
+
+    addToHistory: Function = (id: string) => {
+        this._history.put(id, this.getEntry(id)!);
     }
 
 }
