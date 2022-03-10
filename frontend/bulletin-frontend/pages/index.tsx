@@ -17,31 +17,15 @@ import  UploadModal  from '../components/uploadPostModal';
 import useSwr, { mutate } from 'swr';
 import { globalRefreshController, listEndPoint } from '../utils/controller/ListStreamController';
 import { setGlobalState, useGlobalState } from '../utils/global_state/global';
-import { PlaylistController, getFirst } from '../utils/controller/ListStreamController';
+import { PlaylistController} from '../utils/controller/ListStreamController';
 import { PlayList } from '../utils/playlist/circular_playlist';
 
 
 const Home: NextPage = () => {
-    useEffect(() => {
-      waker();
-    }, [])
+  useEffect(() => {
+    waker();
+  }, [])
 
-    const { data, error } = useSwr(
-      listEndPoint, 
-      globalRefreshController,
-      {
-        revalidateOnReconnect: true,
-        refreshWhenOffline: false, 
-        errorRetryInterval: 6000, 
-        errorRetryCount: 10, 
-        refreshInterval: 180000 * 6,
-      }
-    );
-    if (!data || error) {
-      console.log('controller failed to rehydrate data');
-    };
-
-    const playlist = getFirst();
 
   return (
     <Flex
@@ -78,14 +62,6 @@ const Home: NextPage = () => {
                 as={ArrowForwardIcon}
                 color="pink.300"
               />
-              <Link 
-                aria-label="link to the playlist"
-                href={ playlist }
-                flexGrow={1}
-                mr={2}
-                >
-                  Listen to the playlist <LinkIcon/>
-                </Link>
           </ListItem> 
           <ListItem>
               <ListIcon
