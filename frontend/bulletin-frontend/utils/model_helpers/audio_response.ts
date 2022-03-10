@@ -12,6 +12,7 @@ export type AudioResponse = {
     translation: string[]; 
     validUpload: boolean;
     link? : string;
+    shortid? : string;
 }
 
 export const audioResponseFailure = (r: AudioResponse | undefined): boolean => {

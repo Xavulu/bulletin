@@ -2,6 +2,7 @@ import { BehaviorSubject, map} from "rxjs";
 import { AudioResponse } from "../model_helpers/audio_response";
 import { Ok, Err, Result } from "ts-results"; 
 import { PlayList } from "../playlist/circular_playlist";
+import { nanoid } from "nanoid";
 
 const rawData$ = new BehaviorSubject<AudioResponse[]>([]);
 
@@ -9,7 +10,8 @@ export const audioList$ = rawData$.pipe(
     map((response) =>
     response.map((r) => ({
         ...r, 
-        link: `/play/${r.id}`
+        link: `/play/${r.id}`, 
+        shortid: nanoid(10),
     }))
     )
 );

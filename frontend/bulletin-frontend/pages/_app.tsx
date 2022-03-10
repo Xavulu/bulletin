@@ -4,7 +4,7 @@ import { AudioListProvider } from '../components/streamContext'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider>
+    <ChakraProvider resetCSS={true}>
       <AudioListProvider>
         <Component {...pageProps} />
       </AudioListProvider>

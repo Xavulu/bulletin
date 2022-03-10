@@ -19,6 +19,10 @@ export class PlayList{
         });
     }
 
+    getFirst: Function = (): AudioResponse => {
+        return this.tracks[0];
+    }
+
     getNext: Function = (id: string): string | undefined => {
         const index: number | undefined = this._id_to_index.get(id);
         let res: string | undefined = "";

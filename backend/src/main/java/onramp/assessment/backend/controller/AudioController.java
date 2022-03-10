@@ -67,13 +67,7 @@ public class AudioController {
     public ResponseEntity<AudioUpload> uploadAudio(@Valid @RequestBody AudioUpload input) {
         try {
             AudioUpload upload = new AudioUpload(input.getName(), input.getDescription(), input.getImage(), input.getSource(), input.getAudio(), input.getTitle());
-            if (upload.isValidUpload() == false){
-                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-            }
-            List<String> urls = Arrays.asList(input.getSource(), input.getAudio(), input.getAudio()); 
-            if (URLValidate.urlValidator(urls) == false){
-                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-            }
+            
             repo.save(upload);
             return new ResponseEntity<>(upload, HttpStatus.OK);
         } catch (Exception e) {

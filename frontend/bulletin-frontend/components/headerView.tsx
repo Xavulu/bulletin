@@ -6,7 +6,11 @@ import NextLink from 'next/link';
 const HeaderView = () => {
     const {colorMode, toggleColorMode} = useColorMode();
     const isDark = colorMode === 'dark';
+    const [display, changeDisplay] = useState('none');
+
     return (
+        
+        
         <Flex>
             <Flex
                 pos="fixed"
@@ -52,6 +56,7 @@ const HeaderView = () => {
                     aria-label="Open menu"
                     size="lg"
                     mr={2}
+                    mt={2}
                     icon={<HamburgerIcon/>}
                     display={[ 
                         'flex', 
@@ -59,15 +64,7 @@ const HeaderView = () => {
                         'none', 
                         'none'
                     ]}
-                />
-
-                <Switch
-                    pos="fixed"
-                    top="1rem"
-                    right="1rem"
-                    color="green"
-                    isChecked={isDark}
-                    onChange={toggleColorMode}
+                    onClick={() => changeDisplay('flex')}
                 />
             </Flex>
             
@@ -75,19 +72,24 @@ const HeaderView = () => {
                 w="100vw"
                 bgColor="gray.50"
                 zIndex={20}
-                h="100vh"
+                h="30vh"
                 pos="fixed"
                 top="0"
                 left="0"
                 overflowY="auto"
                 flexDir="column"
+                display={display}
             >
-                <Flex>
+                <Flex justify="flex-end">
                     <IconButton
                         mt={2}
                         mr={2}
                         aria-label="Close menu"
                         size="lg"
+                        icon={
+                            <CloseIcon/>
+                        }
+                        onClick={() => changeDisplay('none')}
                     />
                 </Flex>
             <Flex

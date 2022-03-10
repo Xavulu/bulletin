@@ -45,7 +45,7 @@ sample data:
 2. 
 
     name: 
-        Hino Ataru Basyo Ni Kiteyo by 宇宙ネコ子
+        宇宙ネコ子
     description: 
         Track 2 from Uchu Nekoko's album Hino Ataru Basyo Ni Kiteyo
     image: 
@@ -53,7 +53,7 @@ sample data:
     source: 
         https://uchunekoko.bandcamp.com/track/skirt 
     audio: 
-        https://t4.bcbits.com/stream/c49a6e66682cc40a694264dec4913f43/mp3-128/3732725936?p=0&ts=1646815876&t=4b33ff2d9c0e2853b5d5efe151db3bc5a06b79d7&token=1646815876_ee44a6d37c0f5fb4b40e5068c11652bb3fcdc271
+    https://t4.bcbits.com/stream/c49a6e66682cc40a694264dec4913f43/mp3-128/3732725936?p=0&ts=1646815876&t=4b33ff2d9c0e2853b5d5efe151db3bc5a06b79d7&token=1646815876_ee44a6d37c0f5fb4b40e5068c11652bb3fcdc271
     title: 
         Skirt by 宇宙ネコ子
     
