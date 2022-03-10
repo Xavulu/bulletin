@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { SinglePostView } from '../../components/individualView';
 import { useEffect } from 'react'; 
 import { waker } from '../../utils/wake_up';
+import { setGlobalState, useGlobalState } from '../../utils/global_state/global';
 
 const SinglePostViewByID = () => {
     useEffect(() => {

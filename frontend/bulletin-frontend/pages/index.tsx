@@ -16,7 +16,7 @@ import { CheckCircleIcon, LinkIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import  UploadModal  from '../components/uploadPostModal';
 import useSwr, { mutate } from 'swr';
 import { globalRefreshController, listEndPoint } from '../utils/controller/ListStreamController';
-
+import { setGlobalState, useGlobalState } from '../utils/global_state/global';
 
 
 const Home: NextPage = () => {
@@ -38,6 +38,9 @@ const Home: NextPage = () => {
     if (!data || error) {
       console.log('controller failed to rehydrate data');
     };
+
+    const [playlist, setPlaylist] = useGlobalState("playlist"); 
+    console.log(playlist);
 
   return (
     <Flex
