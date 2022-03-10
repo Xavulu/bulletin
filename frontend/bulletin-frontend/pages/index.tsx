@@ -12,7 +12,7 @@ import {
   ListItem ,
   ListIcon
 } from '@chakra-ui/react'
-import { CheckCircleIcon, LinkIcon, ArrowForwardIcon } from '@chakra-ui/icons';
+import {LinkIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import  UploadModal  from '../components/uploadPostModal';
 import useSwr, { mutate } from 'swr';
 import { globalRefreshController, listEndPoint } from '../utils/controller/ListStreamController';
@@ -53,12 +53,6 @@ const Home: NextPage = () => {
       <HeaderView/>
       <Hero/>
       <Stack>
-        spacing="1.5rem"
-        width="100%"
-        maxWidth="48rem"
-        mt="-45vh"
-        pt="8rem"
-        px="1rem"
       
       <Text>
         a public audio repository
